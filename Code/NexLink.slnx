@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="NexLink.Api/NexLink.Api.csproj" />
+  <Project Path="NexLink.Core/NexLink.Core.csproj" />
+  <Project Path="NexLink.Infrastructure/NexLink.Infrastructure.csproj" />
+  <Project Path="NexLink.Tests/NexLink.Tests.csproj" />
+</Solution>

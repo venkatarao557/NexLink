@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// 1. In v21, custom hex colors are best handled via define-palette
+// with the modern M3 configuration.
+$nexlink-primary-palette: mat.$azure-palette;
+
+$nexlink-tertiary-palette: mat.$azure-palette;
+
+// 2. Define the Nexlink theme
+$nexlink-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: $nexlink-primary-palette,
+    tertiary: $nexlink-tertiary-palette,
+  ),
+  typography: (
+    brand-family: 'Roboto, "Helvetica Neue", sans-serif',
+    plain-family: 'Roboto, "Helvetica Neue", sans-serif',
+  ),
+  // Change this from 0 to a map
+  density: (
+    scale: 0,
+  ),
+));
+// 3. Apply the theme
+html {
+  height: 100%;
+  @include mat.all-component-themes($nexlink-theme);
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  
+  // Using token-based access
+  background-color: mat.get-theme-color($nexlink-theme, surface);
+  color: mat.get-theme-color($nexlink-theme, on-surface);
+  
+  @include mat.typography-hierarchy($nexlink-theme, 'body-medium');
+}

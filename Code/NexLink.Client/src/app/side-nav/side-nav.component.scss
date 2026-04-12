@@ -1,0 +1,36 @@
+.brand-wrapper {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  .brand-icon {
+    transform: scale(1.2);
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(45deg, #3f51b5, #2196f3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.active-link {
+  background: rgba(63, 81, 181, 0.1);
+  color: #3f51b5 !important;
+  border-right: 4px solid #3f51b5;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.main-toolbar {
+  background: white;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #666;
+}

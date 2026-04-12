@@ -1,0 +1,60 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+
+    <div class="brand-wrapper">
+      <mat-icon color="primary" class="brand-icon">hub</mat-icon>
+      <span class="brand-name">NexLink</span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-nav-list>
+      <div mat-subheader>Core</div>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>analytics</mat-icon>
+        <span matListItemTitle>Overview</span>
+      </a>
+      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>router</mat-icon>
+        <span matListItemTitle>NexLink Nodes</span>
+      </a>
+      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>router</mat-icon>
+        <span matListItemTitle>REX Management</span>
+      </a>
+      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>router</mat-icon>
+        <span matListItemTitle>Certificate Management</span>
+      </a>
+      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>router</mat-icon>
+        <span matListItemTitle>Notifications</span>
+      </a>
+      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>router</mat-icon>
+        <span matListItemTitle>Settings</span>
+      </a>            
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="main-toolbar">
+      @if (isHandset$ | async){
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      }
+      <span class="breadcrumb">Console / Overview</span>
+
+      <span class="spacer"></span>
+
+      <button mat-icon-button><mat-icon>notifications</mat-icon></button>
+      <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+    </mat-toolbar>
+
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
