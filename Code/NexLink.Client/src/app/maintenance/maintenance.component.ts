@@ -23,8 +23,8 @@ import { MaintenanceService, MaintenanceTable } from '../services/nexlink-mainte
 })
 export class MaintenanceComponent implements OnInit {
   private maintenanceService = inject(MaintenanceService);
-  geoTables = ['Countries', 'Ports', 'Establishments', 'Regions'];
-  commodityTables = ['CommodityTypes', 'ProductClassifications', 'AHECC_Codes'];
+  //geoTables = ['Countries', 'Ports', 'Establishments', 'Regions'];
+  //commodityTables = ['CommodityTypes', 'ProductClassifications', 'AHECC_Codes'];
   // Dynamic list of tables from the server
   managementTables = signal<MaintenanceTable[]>([]);
   ngOnInit() {
