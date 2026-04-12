@@ -4,9 +4,9 @@ import {SideNavComponent} from './side-nav/side-nav.component';
 @Component({
   selector: 'app-root',
   imports: [SideNavComponent],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
-export class App {
+export class AppComponent {
   protected readonly title = signal('NexLink');
 }

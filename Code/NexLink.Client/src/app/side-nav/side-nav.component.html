@@ -1,9 +1,11 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport 
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
 
     <div class="brand-wrapper">
-      <mat-icon color="primary" class="brand-icon">hub</mat-icon>
+      <mat-icon class="brand-icon">hub</mat-icon>
       <span class="brand-name">NexLink</span>
     </div>
 
@@ -11,41 +13,87 @@
 
     <mat-nav-list>
       <div mat-subheader>Core</div>
+      
       <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
         <mat-icon matListItemIcon>analytics</mat-icon>
         <span matListItemTitle>Overview</span>
       </a>
+
       <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
         <mat-icon matListItemIcon>router</mat-icon>
         <span matListItemTitle>NexLink Nodes</span>
       </a>
-      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
-        <mat-icon matListItemIcon>router</mat-icon>
+
+      <div mat-subheader>Operations</div>
+      
+      <a mat-list-item routerLink="/rex-management" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>assignment_ind</mat-icon>
         <span matListItemTitle>REX Management</span>
       </a>
-      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
-        <mat-icon matListItemIcon>router</mat-icon>
+
+      <a mat-list-item routerLink="/export-certificates" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>verified</mat-icon>
         <span matListItemTitle>Certificate Management</span>
       </a>
-      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
-        <mat-icon matListItemIcon>router</mat-icon>
+
+      <a mat-list-item routerLink="/rex-logs" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>receipt_long</mat-icon>
+        <span matListItemTitle>REX Logs</span>
+      </a>
+
+      <mat-divider></mat-divider>
+
+      <div mat-subheader>System</div>
+
+      <mat-expansion-panel [class.mat-elevation-z0]="true" class="maintenance-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon matListItemIcon>settings_applications</mat-icon>
+            <span class="menu-label">System Maintenance</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list class="sub-menu">
+          <a mat-list-item routerLink="/maintenance" routerLinkActive="active-link">
+            <mat-icon matListItemIcon>grid_view</mat-icon>
+            <span matListItemTitle>All Tables</span>
+          </a>
+
+          <div class="menu-divider">Registry Entities</div>
+          
+          @for (table of managementTables(); track table.routeValue) {
+            <a mat-list-item 
+               [routerLink]="['/data-manager', table.routeValue]" 
+               routerLinkActive="active-link" 
+               class="sub-item">
+              <span class="dot">•</span> {{ table.displayName }}
+            </a>
+          } @empty {
+             <div class="sub-item-loading">Could not load tables...!!!</div>
+          }
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <a mat-list-item routerLink="/notifications" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>notifications</mat-icon>
         <span matListItemTitle>Notifications</span>
       </a>
-      <a mat-list-item routerLink="/nodes" routerLinkActive="active-link">
-        <mat-icon matListItemIcon>router</mat-icon>
+
+      <a mat-list-item routerLink="/settings" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>settings</mat-icon>
         <span matListItemTitle>Settings</span>
-      </a>            
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar class="main-toolbar">
-      @if (isHandset$ | async){
-      <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+      @if (isHandset$ | async) {
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
       }
-      <span class="breadcrumb">Console / Overview</span>
+      <span class="breadcrumb">Console / {{ currentRouteTitle }}</span>
 
       <span class="spacer"></span>
 

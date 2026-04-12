@@ -1,0 +1,67 @@
+.maintenance-container {
+  padding: 24px;
+}
+
+.category-group {
+  margin-bottom: 40px;
+
+  h2 {
+    margin-bottom: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+}
+
+.card-grid {
+  display: grid;
+  // This is the magic line: it creates as many columns as fit, 
+  // with a minimum width of 280px each.
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px; // Spatial gaps between cards
+}
+
+.maintenance-card {
+  height: 100%; // Ensure cards in the same row have equal height
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  mat-card-header {
+    margin-bottom: 12px;
+    
+    // This prevents the "clumsy" long text overlapping
+    ::ng-deep .mat-mdc-card-header-text {
+       width: 100%;
+       overflow: hidden;
+    }
+  }
+
+  mat-card-title {
+    font-size: 1.1rem;
+    word-break: break-word; // Allows long names to wrap instead of cutting off
+    line-height: 1.2;
+    margin-top: 4px;
+  }
+
+  mat-card-subtitle {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    opacity: 0.7;
+  }
+  
+  mat-card-actions {
+    margin-top: auto; // Pushes buttons to the bottom
+    padding: 8px 16px;
+  }
+}
+
+.primary-border {
+  border-left: 4px solid #1976d2; // Gives a nice subtle accent
+}

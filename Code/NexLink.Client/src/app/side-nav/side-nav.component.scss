@@ -1,36 +1,66 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 260px;
+  border-right: none;
+  background-color: var(--mat-sys-surface);
+}
+
 .brand-wrapper {
-  padding: 20px;
+  padding: 24px;
   display: flex;
   align-items: center;
   gap: 12px;
   
-  .brand-icon {
-    transform: scale(1.2);
+  .brand-icon { 
+    font-size: 32px; 
+    width: 32px; 
+    height: 32px; 
+    color: #007FFF; // Your NexLink Primary Azure
   }
-
-  .brand-name {
-    font-size: 1.4rem;
-    font-weight: 700;
+  
+  .brand-name { 
+    font-size: 20px; 
+    font-weight: 700; 
     letter-spacing: -0.5px;
-    background: linear-gradient(45deg, #3f51b5, #2196f3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--mat-sys-on-surface);
   }
 }
 
 .active-link {
-  background: rgba(63, 81, 181, 0.1);
-  color: #3f51b5 !important;
-  border-right: 4px solid #3f51b5;
+  background-color: var(--mat-sys-primary-container) !important;
+  color: var(--mat-sys-on-primary-container) !important;
+  border-radius: 0 25px 25px 0;
+  margin-right: 8px;
+
+  mat-icon {
+    color: var(--mat-sys-primary) !important;
+  }
 }
 
-.spacer {
-  flex: 1 1 auto;
+.maintenance-panel {
+  background: transparent !important;
+  
+  .sub-item {
+    padding-left: 48px !important; // Indent the sub-menu items
+    font-size: 13px;
+    height: 40px !important;
+  }
+}
+
+.menu-divider {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mat-sys-outline);
+  padding: 12px 16px 4px 48px;
+  text-transform: uppercase;
 }
 
 .main-toolbar {
-  background: white;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
-  color: #666;
+  background: var(--mat-sys-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
 }
+
+.spacer { flex: 1 1 auto; }

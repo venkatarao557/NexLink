@@ -1,16 +1,32 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from '../app/dashboard/dashboard.component'; 
-import { SettingsComponent } from '../app/settings/settings.component';
 
 export const routes: Routes = [
   { 
-    path: 'dashboard', 
-    component: DashboardComponent, 
-    title: 'NexLink - Dashboard' 
+    path: '', 
+    redirectTo: 'maintenance', 
+    pathMatch: 'full' 
   },
+
+  // 1. Maintenance Dashboard Overview
   { 
-    path: 'settings', 
-    component: SettingsComponent, 
-    title: 'NexLink - Settings' 
+    path: 'maintenance', 
+    loadComponent: () => import('./maintenance/maintenance.component')
+      .then(m => m.MaintenanceComponent),
+    title: 'NexLink - System Maintenance'
   },
+
+  // 2. Data Manager (Specific Table View)
+  // Changed path to 'data-manager' to match your Sidebar routerLinks
+  { 
+    path: 'data-manager/:tableName', 
+    loadComponent: () => import('./data-manager/data-manager.component')
+      .then(m => m.DataManagerComponent),
+    title: 'NexLink - Data Manager'
+  },
+
+  // 3. Fallback / Wildcard for 404s
+  { 
+    path: '**', 
+    redirectTo: 'maintenance' 
+  }
 ];
