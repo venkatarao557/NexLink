@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // --- 1. DATABASE & DI REGISTRATION ---
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<ExlinkContext>(options =>
+builder.Services.AddDbContext<NexLinkDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 // Register Generic Repository & Specialized Services

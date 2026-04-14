@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using NexLink.Core.DTOs;
+
 
 namespace NexLink.Core.Interfaces
 {
@@ -8,5 +9,8 @@ namespace NexLink.Core.Interfaces
     {
         Task AddRecordAsync(string tableName, object data);
         Task<IEnumerable<dynamic>> GetTableDataAsync(string tableName);
+        //Task<IActionResult> GetAvailableTables();
+
+        Task<IEnumerable<MaintenanceTableDto>> GetAvailableTablesAsync();
     }
 }

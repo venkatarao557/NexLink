@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NexLink.Infrastructure.Data;
 
-public partial class ExlinkContext : DbContext
+public partial class NexLinkDbContext : DbContext
 {
-    public ExlinkContext()
+    public NexLinkDbContext()
     {
     }
 
-    public ExlinkContext(DbContextOptions<ExlinkContext> options)
+    public NexLinkDbContext(DbContextOptions<NexLinkDbContext> options)
         : base(options)
     {
     }
@@ -46,7 +46,7 @@ public partial class ExlinkContext : DbContext
 
     public virtual DbSet<DominantProduct> DominantProducts { get; set; }
 
-    public virtual DbSet<Eucountry> Eucountries { get; set; }
+    public virtual DbSet<EUCountry> Eucountries { get; set; }
 
     public virtual DbSet<IntendedUse> IntendedUses { get; set; }
 
@@ -114,9 +114,11 @@ public partial class ExlinkContext : DbContext
 
     public virtual DbSet<WeightUnitShort> WeightUnitShorts { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Server=localhost;Database=Exlink;Trusted_Connection=True;TrustServerCertificate=True");
+    public virtual DbSet<TableRegistry> TableRegistry { get; set; }
+
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+    //        => optionsBuilder.UseSqlServer("Server=localhost;Database=Exlink;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -236,11 +238,11 @@ public partial class ExlinkContext : DbContext
             entity.Property(e => e.DominantProductId).HasDefaultValueSql("(newsequentialid())");
         });
 
-        modelBuilder.Entity<Eucountry>(entity =>
+        modelBuilder.Entity<EUCountry>(entity =>
         {
-            entity.HasKey(e => e.EucountryId).HasName("PK__EUCountr__2ABEECCD107475D7");
+            entity.HasKey(e => e.EUCountryID).HasName("PK__EUCountr__2ABEECCD107475D7");
 
-            entity.Property(e => e.EucountryId).HasDefaultValueSql("(newsequentialid())");
+            entity.Property(e => e.EUCountryID).HasDefaultValueSql("(newsequentialid())");
         });
 
         modelBuilder.Entity<IntendedUse>(entity =>
@@ -490,6 +492,27 @@ public partial class ExlinkContext : DbContext
             entity.HasKey(e => e.WeightUnitShortId).HasName("PK__WeightUn__92B5B8F0C465E3E9");
 
             entity.Property(e => e.WeightUnitShortId).HasDefaultValueSql("(newsequentialid())");
+        });
+
+        modelBuilder.Entity<TableRegistry>(entity =>
+        {
+            // Set the table name (otherwise it defaults to 'TableRegistry')
+            entity.ToTable("TableRegistry");
+
+            // Define the Primary Key
+            entity.HasKey(e => e.TableName);
+
+            // Optional: Set constraints
+            entity.Property(e => e.TableName)
+                  .HasMaxLength(128)
+                  .IsRequired();
+
+            entity.Property(e => e.DisplayName)
+                  .HasMaxLength(255)
+                  .IsRequired();
+
+            entity.Property(e => e.IsMaintenance)
+                  .HasDefaultValue(false);
         });
 
         OnModelCreatingPartial(modelBuilder);

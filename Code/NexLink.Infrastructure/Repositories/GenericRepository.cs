@@ -8,10 +8,10 @@ namespace NexLink.Infrastructure.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private readonly ExlinkContext _context;
+    private readonly NexLinkDbContext _context;
     private readonly DbSet<T> _dbSet;
 
-    public GenericRepository(ExlinkContext context)
+    public GenericRepository(NexLinkDbContext context)
     {
         _context = context;
         _dbSet = context.Set<T>();

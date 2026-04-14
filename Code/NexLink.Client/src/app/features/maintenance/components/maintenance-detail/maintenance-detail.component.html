@@ -1,0 +1,20 @@
+<div class="maintenance-detail">
+  <h1>Maintenance details for {{ tableName() }}</h1>
+
+  <p *ngIf="rowData.length === 0" class="empty-state">
+    No data found for this table.
+  </p>
+
+  <table *ngIf="rowData.length > 0" class="maintenance-table">
+    <thead>
+      <tr>
+        <th *ngFor="let column of columnDefs">{{ column.field }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of rowData">
+        <td *ngFor="let column of columnDefs">{{ row[column.field] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

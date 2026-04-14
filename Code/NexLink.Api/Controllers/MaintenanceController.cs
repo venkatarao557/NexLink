@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NexLink.Core.Entities; // Assuming your Country model is here
 using NexLink.Core.Interfaces;
 using System.Reflection;
@@ -44,20 +45,10 @@ namespace NexLink.Api.Controllers
         }
 
         [HttpGet("tables")]
-        public IActionResult GetAvailableTables()
+        public async Task<IActionResult> GetAvailableTables()
         {
-            var assembly = Assembly.Load("NexLink.Core");
-
-            // Get all classes in the Entities namespace
-            var tables = assembly.GetTypes()
-                .Where(t => t.IsClass && t.Namespace == "NexLink.Core.Entities")
-                .Select(t => new {
-                    DisplayName = t.Name, // e.g., "Country"
-                    RouteValue = t.Name   // The string used for the API call
-                })
-                .OrderBy(t => t.DisplayName)
-                .ToList();
-
+            // Fetch only authorized maintenance tables from the registry
+            var tables = await _maintenanceService.GetAvailableTablesAsync(); 
             return Ok(tables);
         }
     }
