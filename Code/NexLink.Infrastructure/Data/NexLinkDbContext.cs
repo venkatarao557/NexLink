@@ -46,7 +46,7 @@ public partial class NexLinkDbContext : DbContext
 
     public virtual DbSet<DominantProduct> DominantProducts { get; set; }
 
-    public virtual DbSet<EUCountry> Eucountries { get; set; }
+    public virtual DbSet<EUCountry> EuCountries { get; set; }
 
     public virtual DbSet<IntendedUse> IntendedUses { get; set; }
 
@@ -240,9 +240,9 @@ public partial class NexLinkDbContext : DbContext
 
         modelBuilder.Entity<EUCountry>(entity =>
         {
-            entity.HasKey(e => e.EUCountryID).HasName("PK__EUCountr__2ABEECCD107475D7");
+            entity.HasKey(e => e.EuCountryId).HasName("PK__EUCountr__2ABEECCD107475D7");
 
-            entity.Property(e => e.EUCountryID).HasDefaultValueSql("(newsequentialid())");
+            entity.Property(e => e.EuCountryId).HasDefaultValueSql("(newsequentialid())");
         });
 
         modelBuilder.Entity<IntendedUse>(entity =>

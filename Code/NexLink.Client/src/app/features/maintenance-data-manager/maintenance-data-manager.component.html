@@ -10,9 +10,34 @@
     </button>
   </div>
 
+  @if (hasEditor()) {
+    <mat-card appearance="outlined" class="editor-card">
+      <div class="editor-header">
+        <h3>{{ editorTitle() }}</h3>
+      </div>
+
+      <form [formGroup]="editorForm" class="editor-form" (ngSubmit)="saveRecord()">
+        @for (col of displayedColumns(); track col) {
+          <mat-form-field appearance="outline" class="editor-field">
+            <mat-label>{{ col | titlecase }}</mat-label>
+            <input matInput [formControlName]="col" />
+          </mat-form-field>
+        }
+
+        <div class="editor-actions">
+          <button mat-flat-button color="primary" type="submit" [disabled]="saving()">
+            Save
+          </button>
+          <button mat-flat-button color="basic" type="button" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  }
+
   <mat-card appearance="outlined" class="table-card">
     <table mat-table [dataSource]="dataSource()" class="mat-elevation-z0">
-      
       @for (col of displayedColumns(); track col) {
         <ng-container [matColumnDef]="col">
           <th mat-header-cell *matHeaderCellDef> {{ col | titlecase }} </th>

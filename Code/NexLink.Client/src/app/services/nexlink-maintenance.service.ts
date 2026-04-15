@@ -36,9 +36,19 @@ export class MaintenanceService {
     return this.http.get<any[]>(`${this.baseUrl}/${tableName}`);
   }
 
+  // Generic method to create a new record for a table
+  createRecord(tableName: string, data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/${tableName}`, data);
+  }
+
   // Generic method to update any reference data table
   updateRecord(tableName: string, id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${tableName}/${id}`, data);
+  }
+
+  // Generic method to delete a record from a table
+  deleteRecord(tableName: string, id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${tableName}/${id}`);
   }
 }
 
