@@ -24,10 +24,22 @@ import { MaintenanceService, MaintenanceTable } from '../../services/nexlink-mai
 export class MaintenanceComponent implements OnInit {
   private maintenanceService = inject(MaintenanceService);
   managementTables = signal<MaintenanceTable[]>([]);
+  loading = signal(true);
+  errorLoading = signal(false);
+  errorMessage = signal('');
 
   ngOnInit(): void {
-    this.maintenanceService.getAvailableTables().subscribe(tables => {
-      this.managementTables.set(tables);
+    this.maintenanceService.getAvailableTables().subscribe({
+      next: (tables) => {
+        this.managementTables.set(tables);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        this.errorLoading.set(true);
+        this.errorMessage.set('Unable to load maintenance table catalog.');
+        this.loading.set(false);
+        console.error('Maintenance component failed to load tables:', err);
+      }
     });
   }
 }

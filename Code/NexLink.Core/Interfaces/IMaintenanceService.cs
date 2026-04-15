@@ -9,7 +9,7 @@ namespace NexLink.Core.Interfaces
         Task<IEnumerable<object>> GetTableDataAsync(string tableName);
         Task<object?> GetRecordByIdAsync(string tableName, Guid id);
         Task AddRecordAsync(string tableName, object data);
-        Task UpdateRecordAsync(string tableName, object data);
+        Task UpdateRecordAsync(string tableName, Guid id, object data);
         Task DeleteRecordAsync(string tableName, Guid id);
     }
 }

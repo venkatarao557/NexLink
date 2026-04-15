@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -36,14 +36,24 @@ export class MaintenanceService {
     return this.http.get<any[]>(`${this.baseUrl}/${tableName}`);
   }
 
+  private readonly jsonHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+
   // Generic method to create a new record for a table
   createRecord(tableName: string, data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${tableName}`, data);
+    return this.http.post(
+      `${this.baseUrl}/${tableName}`,
+      JSON.stringify(data),
+      { headers: this.jsonHeaders }
+    );
   }
 
   // Generic method to update any reference data table
   updateRecord(tableName: string, id: string, data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${tableName}/${id}`, data);
+    return this.http.put(
+      `${this.baseUrl}/${tableName}/${id}`,
+      JSON.stringify(data),
+      { headers: this.jsonHeaders }
+    );
   }
 
   // Generic method to delete a record from a table

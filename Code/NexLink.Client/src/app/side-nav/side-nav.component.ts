@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion'; // Important for the menu
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -25,6 +26,7 @@ import { MaintenanceService, MaintenanceTable } from '../services/nexlink-mainte
     MatListModule,
     MatIconModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
     AsyncPipe,
   ]
 })
@@ -39,6 +41,9 @@ export class SideNavComponent implements OnInit {
 
   // 2. Define the signal that the HTML is looking for
   managementTables = signal<MaintenanceTable[]>([]);
+  loadingTables = signal(true);
+  tablesLoadError = signal(false);
+  tablesErrorMessage = signal('');
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -54,11 +59,17 @@ export class SideNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.maintenanceService.getAvailableTables().subscribe({
-      next: (tables) => { this.managementTables.set(tables) },
+      next: (tables) => {
+        this.managementTables.set(tables);
+        this.loadingTables.set(false);
+      },
       error: (err) => {
-        console.log('SideNav component failed to load NexLink tables:', err)
+        console.log('SideNav component failed to load NexLink tables:', err);
+        this.tablesLoadError.set(true);
+        this.tablesErrorMessage.set('Unable to load registry tables.');
+        this.loadingTables.set(false);
       }
-    })
+    });
   }
 
 }

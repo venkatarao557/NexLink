@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MaintenanceService } from '../../services/nexlink-maintenance.service';
 
 @Component({
@@ -22,7 +23,8 @@ import { MaintenanceService } from '../../services/nexlink-maintenance.service';
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './maintenance-data-manager.component.html',
   styleUrls: ['./maintenance-data-manager.component.scss']
@@ -39,6 +41,7 @@ export class MaintenanceDataManagerComponent implements OnInit {
   editingRow = signal<any | null>(null);
   editorForm = this.fb.group({});
   saving = signal(false);
+  loading = signal(true);
 
   allColumns = computed(() => [...this.displayedColumns(), 'actions']);
   hasEditor = computed(() => this.editorMode() !== null);
@@ -79,6 +82,7 @@ export class MaintenanceDataManagerComponent implements OnInit {
   }
 
   loadData(): void {
+    this.loading.set(true);
     this.maintenanceService.getTableData(this.tableName()).subscribe({
       next: (data) => {
         this.dataSource.set(data || []);
@@ -92,8 +96,12 @@ export class MaintenanceDataManagerComponent implements OnInit {
           });
           this.displayedColumns.set(keys);
         }
+        this.loading.set(false);
       },
-      error: (err) => console.error('Failed to load NexLink table:', err)
+      error: (err) => {
+        console.error('Failed to load NexLink table:', err);
+        this.loading.set(false);
+      }
     });
   }
 

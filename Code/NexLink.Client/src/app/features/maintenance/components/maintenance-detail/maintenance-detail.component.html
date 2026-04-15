@@ -1,11 +1,16 @@
 <div class="maintenance-detail">
   <h1>Maintenance details for {{ tableName() }}</h1>
 
-  <p *ngIf="rowData.length === 0" class="empty-state">
+  <div *ngIf="loading()" class="loading-state">
+    <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+    <p>Loading table data...</p>
+  </div>
+
+  <p *ngIf="!loading() && rowData.length === 0" class="empty-state">
     No data found for this table.
   </p>
 
-  <table *ngIf="rowData.length > 0" class="maintenance-table">
+  <table *ngIf="!loading() && rowData.length > 0" class="maintenance-table">
     <thead>
       <tr>
         <th *ngFor="let column of columnDefs">{{ column.field }}</th>

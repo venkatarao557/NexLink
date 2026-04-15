@@ -54,15 +54,25 @@
 
           <div class="menu-divider">Registry Entities</div>
           
-          @for (table of managementTables(); track table.routeValue) {
-            <a mat-list-item 
-               [routerLink]="['/data-manager', table.routeValue]" 
-               routerLinkActive="active-link" 
-               class="sub-item">
-              <span class="dot">•</span> {{ table.displayName }}
-            </a>
-          } @empty {
-             <div class="sub-item-loading">Could not load tables...!!!</div>
+          @if (loadingTables()) {
+            <div class="sub-item-loading">
+              <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+              Loading tables...
+            </div>
+          } @else if (tablesLoadError()) {
+            <div class="sub-item-loading error">
+              <mat-icon>error</mat-icon>
+              {{ tablesErrorMessage() }}
+            </div>
+          } @else {
+            @for (table of managementTables(); track table.routeValue) {
+              <a mat-list-item 
+                 [routerLink]="['/data-manager', table.routeValue]" 
+                 routerLinkActive="active-link" 
+                 class="sub-item">
+                <span class="dot">•</span> {{ table.displayName }}
+              </a>
+            }
           }
         </mat-nav-list>
       </mat-expansion-panel>

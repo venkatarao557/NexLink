@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NexLink.Core.Interfaces;
+using System.Text.Json;
 
 namespace NexLink.Api.Controllers
 {
@@ -80,11 +81,11 @@ namespace NexLink.Api.Controllers
         /// Create a new record in a maintenance table
         /// </summary>
         [HttpPost("{tableName}")]
-        public async Task<IActionResult> CreateRecord(string tableName, [FromBody] object data)
+        public async Task<IActionResult> CreateRecord(string tableName, [FromBody] JsonElement data)
         {
             try
             {
-                if (data == null)
+                if (data.ValueKind == JsonValueKind.Null || data.ValueKind == JsonValueKind.Undefined)
                     return BadRequest(new { message = "Request body cannot be empty" });
 
                 await _maintenanceService.AddRecordAsync(tableName, data);
@@ -107,15 +108,15 @@ namespace NexLink.Api.Controllers
         /// <summary>
         /// Update an existing record in a maintenance table
         /// </summary>
-        [HttpPut("{tableName}")]
-        public async Task<IActionResult> UpdateRecord(string tableName, [FromBody] object data)
+        [HttpPut("{tableName}/{id}")]
+        public async Task<IActionResult> UpdateRecord(string tableName, Guid id, [FromBody] JsonElement data)
         {
             try
             {
-                if (data == null)
+                if (data.ValueKind == JsonValueKind.Null || data.ValueKind == JsonValueKind.Undefined)
                     return BadRequest(new { message = "Request body cannot be empty" });
 
-                await _maintenanceService.UpdateRecordAsync(tableName, data);
+                await _maintenanceService.UpdateRecordAsync(tableName, id, data);
                 return Ok(new { message = "Record updated successfully" });
             }
             catch (KeyNotFoundException ex)

@@ -4,32 +4,42 @@
   <div class="category-grid">
     <section class="category-group">
       <h2 class="mat-title-small azure-text">Reference Data & Entities</h2>
-      <div class="card-grid">
-        @for (table of managementTables(); track table.routeValue) {
-          <mat-card class="maintenance-card primary-border" 
-                    appearance="outlined" 
-                    [routerLink]="['/data-manager', table.routeValue]">
-            <mat-card-header>
-              <div mat-card-avatar>
-                <mat-icon color="primary">table_chart</mat-icon>
-              </div>
-              <mat-card-subtitle>Registry Entity</mat-card-subtitle>
-              <mat-card-title>{{ table.displayName }}</mat-card-title>
-            </mat-card-header>
-            
-            <mat-card-actions align="end">
-              <button mat-icon-button color="primary" [routerLink]="['/data-manager', table.routeValue]">
-                <mat-icon>settings</mat-icon>
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        } @empty {
-          <div class="loading-state">
-            <mat-progress-spinner diameter="40"></mat-progress-spinner>
-            <p>Scanning NexLink.Core for entities...</p>
-          </div>
-        }
-      </div>
+      @if (loading()) {
+        <div class="loading-state">
+          <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+          <p>Scanning NexLink.Core for entities...</p>
+        </div>
+      } @else if (errorLoading()) {
+        <div class="loading-state error">
+          <p>{{ errorMessage() }}</p>
+        </div>
+      } @else if (managementTables().length === 0) {
+        <div class="loading-state">
+          <p>No reference entities were found.</p>
+        </div>
+      } @else {
+        <div class="card-grid">
+          @for (table of managementTables(); track table.routeValue) {
+            <mat-card class="maintenance-card primary-border" 
+                      appearance="outlined" 
+                      [routerLink]="['/data-manager', table.routeValue]">
+              <mat-card-header>
+                <div mat-card-avatar>
+                  <mat-icon color="primary">table_chart</mat-icon>
+                </div>
+                <mat-card-subtitle>Registry Entity</mat-card-subtitle>
+                <mat-card-title>{{ table.displayName }}</mat-card-title>
+              </mat-card-header>
+              
+              <mat-card-actions align="end">
+                <button mat-icon-button color="primary" [routerLink]="['/data-manager', table.routeValue]">
+                  <mat-icon>settings</mat-icon>
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          }
+        </div>
+      }
     </section>
   </div>
 </div>

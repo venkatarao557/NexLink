@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace NexLink.Core.Entities;
 
 [Table("EUCountry")]
-[Index("EUCountryCode", Name = "UQ_EUCountry_Code", IsUnique = true)]
+[Index("EuCountryCode", Name = "UQ_EUCountry_Code", IsUnique = true)]
 public partial class EUCountry
 {
     [Key]

@@ -241,7 +241,6 @@ public partial class NexLinkDbContext : DbContext
         modelBuilder.Entity<EUCountry>(entity =>
         {
             entity.HasKey(e => e.EuCountryId).HasName("PK__EUCountr__2ABEECCD107475D7");
-
             entity.Property(e => e.EuCountryId).HasDefaultValueSql("(newsequentialid())");
         });
 
