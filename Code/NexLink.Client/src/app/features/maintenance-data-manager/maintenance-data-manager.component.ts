@@ -5,10 +5,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { MaintenanceService } from '../services/nexlink-maintenance.service';
+import { MaintenanceService } from '../../services/nexlink-maintenance.service';
 
 @Component({
-  selector: 'app-data-manager',
+  selector: 'app-maintenance-data-manager',
   standalone: true,
   imports: [
     CommonModule,
@@ -18,10 +18,10 @@ import { MaintenanceService } from '../services/nexlink-maintenance.service';
     MatIconModule,
     MatCardModule
   ],
-  templateUrl: './data-manager.component.html',
-  styleUrls: ['./data-manager.component.scss']
+  templateUrl: './maintenance-data-manager.component.html',
+  styleUrls: ['./maintenance-data-manager.component.scss']
 })
-export class DataManagerComponent implements OnInit {
+export class MaintenanceDataManagerComponent implements OnInit {
   // Using the new 'inject' function (common in v21) instead of constructor
   private route = inject(ActivatedRoute);
   private maintenanceService = inject(MaintenanceService);

@@ -8,7 +8,20 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
 
-  // 1. Maintenance Dashboard Overview
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./features/dashboard/dashboard.component')
+      .then(m => m.DashboardComponent),
+    title: 'NexLink - Dashboard'
+  },
+
+  {
+    path: 'settings',
+    loadComponent: () => import('./features/settings/settings.component')
+      .then(m => m.SettingsComponent),
+    title: 'NexLink - Settings'
+  },
+
   {
     path: 'maintenance',
     loadComponent: () => import('./features/maintenance/maintenance.component')
@@ -16,12 +29,10 @@ export const routes: Routes = [
     title: 'NexLink - System Maintenance'
   },
 
-  // 2. Data Manager (Specific Table View)
-  // Changed path to 'data-manager' to match your Sidebar routerLinks
   {
     path: 'data-manager/:tableName',
-    loadComponent: () => import('./data-manager/data-manager.component')
-      .then(m => m.DataManagerComponent),
+    loadComponent: () => import('./features/maintenance-data-manager/maintenance-data-manager.component')
+      .then(m => m.MaintenanceDataManagerComponent),
     title: 'NexLink - Data Manager'
   },
 
@@ -30,7 +41,7 @@ export const routes: Routes = [
     component: MaintenanceDetailComponent,
     title: 'NexLink - Maintenance Details'
   },
-  // 3. Fallback / Wildcard for 404s
+
   {
     path: '**',
     redirectTo: 'maintenance'
