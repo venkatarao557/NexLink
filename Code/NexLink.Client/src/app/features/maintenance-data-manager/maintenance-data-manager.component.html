@@ -3,7 +3,7 @@
     <button mat-icon-button routerLink="/maintenance">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <h2 class="mat-headline-small">{{ tableName() | titlecase }} Management</h2>
+    <h2 class="mat-headline-small">{{ displayName }} Management</h2>
     <span class="spacer"></span>
     <button mat-flat-button color="primary" (click)="openEntryDialog()" [disabled]="loading() || saving()">
       <mat-icon>add</mat-icon> Add New Record
@@ -13,7 +13,7 @@
   @if (loading()) {
     <div class="loading-state">
       <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
-      <p>Loading {{ tableName() | titlecase }} records...</p>
+      <p>Loading {{ displayName }} records...</p>
     </div>
   }
 

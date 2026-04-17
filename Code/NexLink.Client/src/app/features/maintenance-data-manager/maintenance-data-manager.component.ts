@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MaintenanceService } from '../../services/nexlink-maintenance.service';
+import { MaintenanceTable } from '../../core/models/maintenance.model';
 
 @Component({
   selector: 'app-maintenance-data-manager',
@@ -35,6 +36,10 @@ export class MaintenanceDataManagerComponent implements OnInit {
   private fb = inject(FormBuilder);
 
   tableName = signal<string>('');
+ 
+  // 1. New signal to hold the master list of table metadata
+  private availableTables = signal<MaintenanceTable[]>([]);
+
   dataSource = signal<any[]>([]);
   displayedColumns = signal<string[]>([]);
   editorMode = signal<'create' | 'edit' | null>(null);
@@ -46,11 +51,29 @@ export class MaintenanceDataManagerComponent implements OnInit {
   allColumns = computed(() => [...this.displayedColumns(), 'actions']);
   hasEditor = computed(() => this.editorMode() !== null);
   editorTitle = computed(() => this.editorMode() === 'create' ? 'Add Record' : 'Edit Record');
+  private displayNameSignal = computed(() => {
+    const name = this.tableName();
+    const availableTables = this.availableTables();
+    console.log('Computing display name for', name, 'available tables:', availableTables);
+    const match = availableTables.find(t => t.routeValue === name)
+    console.log('Computing display name for', name, 'found match:', match);
+    return match ? match.displayName : name;
+  });
+
+  get displayName(): string {
+    return this.displayNameSignal();
+  }
 
   ngOnInit() {
+// 4. Fetch the mapping list from the service
+    this.maintenanceService.getAvailableTables().subscribe({
+      next: (tables) => this.availableTables.set(tables),
+      error: (err) => console.error('Could not load table metadata', err)
+    });
+
+    // 5. Watch for URL parameter changes
     this.route.params.subscribe(params => {
       this.tableName.set(params['tableName']);
-      this.clearEditor();
       this.loadData();
     });
   }
@@ -85,6 +108,7 @@ export class MaintenanceDataManagerComponent implements OnInit {
     this.loading.set(true);
     this.maintenanceService.getTableData(this.tableName()).subscribe({
       next: (data) => {
+        console.log(`Loaded data for table ${this.tableName()}:`, data);
         this.dataSource.set(data || []);
         if (data?.length > 0) {
           const keys = Object.keys(data[0]).filter(k => {

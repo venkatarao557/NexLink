@@ -1,0 +1,76 @@
+.rex-editor-wrapper {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+
+  .editor-header {
+    background: #ffffff;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    .title-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      h1 { margin: 0; font-size: 20px; color: #1a237e; font-weight: 600; }
+      small { color: #666; font-family: monospace; }
+    }
+  }
+
+  .editor-content {
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .card-section {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    .label-bar {
+      background: #1a237e;
+      color: white;
+      padding: 8px 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  .items-section {
+    .items-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      h3 { margin: 0; font-weight: 500; }
+    }
+  }
+
+  .product-panel {
+    border: 1px solid #d1d9e6;
+    margin-bottom: 12px;
+    
+    mat-expansion-panel-header {
+      background: #f8faff;
+      &.mat-expanded { background: #e8efff; }
+    }
+  }
+
+  .tab-padding { padding: 24px; }
+  .inner-tab-padding { padding: 20px; background: #fafafa; min-height: 150px; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+}

@@ -32,6 +32,7 @@ export class MaintenanceComponent implements OnInit {
     this.maintenanceService.getAvailableTables().subscribe({
       next: (tables) => {
         this.managementTables.set(tables);
+        console.log('Loaded maintenance tables:', tables);
         this.loading.set(false);
       },
       error: (err) => {

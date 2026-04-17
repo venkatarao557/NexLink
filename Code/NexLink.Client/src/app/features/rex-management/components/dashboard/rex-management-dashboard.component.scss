@@ -1,0 +1,105 @@
+.rex-management-wrapper {
+  padding: 24px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+
+  .page-header {
+    margin-bottom: 32px;
+    h1 {
+      color: #1a237e;
+      font-weight: 500;
+      margin: 0;
+      font-size: 28px;
+    }
+    p {
+      color: #5f6368;
+      margin: 4px 0 0 0;
+    }
+  }
+
+  .card-deck {
+    display: grid;
+    // This ensures cards are balanced across the row
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    align-items: stretch; // Keeps card heights identical
+  }
+
+  .workflow-card {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: none;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      border-color: #1a237e;
+    }
+
+    mat-card-header {
+      padding: 16px 16px 0 16px;
+      display: flex;
+      align-items: center;
+
+      .status-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border-radius: 4px;
+        margin-right: 12px;
+        
+        mat-icon {
+          font-size: 24px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      mat-card-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #202124;
+      }
+    }
+
+    mat-card-content {
+      padding: 16px;
+      flex: 1 1 auto; // Pushes the footer to the bottom
+      p {
+        color: #5f6368;
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+      }
+    }
+
+    mat-card-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #f1f3f4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+
+      .action-label {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #1a237e;
+        letter-spacing: 0.5px;
+      }
+
+      .arrow {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        color: #1a237e;
+      }
+    }
+  }
+}

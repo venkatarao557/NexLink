@@ -1,0 +1,28 @@
+<div class="rex-management-wrapper">
+  <div class="page-header">
+    <h1>REX Management</h1>
+    <p>Select a workflow to begin managing export documentation</p>
+  </div>
+
+  <div class="card-deck">
+    @for (activity of activities; track activity.id) {
+      <mat-card class="workflow-card" (click)="onActivityClick(activity.id)">
+        <mat-card-header>
+          <div mat-card-avatar class="status-icon" [style.background-color]="activity.color">
+            <mat-icon>{{ activity.icon }}</mat-icon>
+          </div>
+          <mat-card-title>{{ activity.title }}</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <p>{{ activity.description }}</p>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <span class="action-label">Open Activity</span>
+          <mat-icon class="arrow">chevron_right</mat-icon>
+        </mat-card-footer>
+      </mat-card>
+    }
+  </div>
+</div>
