@@ -3,37 +3,39 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 
-// Angular Material Imports
+// Material Imports
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-rex-editor',
   standalone: true,
   imports: [
-    CommonModule, 
-    ReactiveFormsModule, 
-    MatTabsModule, 
-    MatExpansionModule, 
-    MatIconModule, 
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSnackBarModule
+    CommonModule, ReactiveFormsModule, MatTabsModule, MatIconModule, 
+    MatButtonModule, MatFormFieldModule, MatInputModule, MatListModule, 
+    MatSelectModule, MatSnackBarModule
   ],
   templateUrl: './rex-editor.component.html',
   styleUrls: ['./rex-editor.component.scss']
 })
 export class RexEditorComponent implements OnInit {
   rexForm!: FormGroup;
-  pageTitle: string = 'New Request for Export';
-  mode: string = 'create';
+  activeMainSection = 'Line Items';
+  activeLineItemIndex = 0;
   rexId: string | null = null;
+  pageTitle = 'New Request for Export';
+
+  mainSections = [
+    'Status', 'Exporter', 'Shipping', 'Consignee', 'Customs', 
+    'Inspection', "Ship Hold's Inspection", 'Transit Location', 
+    'Support Documents', 'Miscellaneous Details', 'Line Items'
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -45,87 +47,76 @@ export class RexEditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    // 1. Capture Routing Data
-    this.mode = this.route.snapshot.data['mode'] || 'create';
-    this.pageTitle = this.route.snapshot.data['title'] || 'Request for Export';
     this.rexId = this.route.snapshot.params['id'];
-
-    // 2. Handle specific modes
-    if (this.mode === 'amend' && this.rexId) {
-      this.loadRexData(this.rexId);
-    } else if (this.mode === 'load') {
-      this.snackBar.open('Ready for External Data Import', 'Close', { duration: 3000 });
-    } else {
-      // Default: Start with one blank line item for 'Create' mode
-      this.addLineItem();
+    if (this.lineItemsArray.length === 0) {
+      this.addLineItem(); 
     }
   }
 
   private initForm() {
     this.rexForm = this.fb.group({
-      // Parent Header: 9 Logical Sections
       header: this.fb.group({
+        status: this.fb.group({ currentStatus: ['Draft'] }),
         exporter: this.fb.group({ name: [''], estNo: [''] }),
-        consignee: this.fb.group({ name: [''], country: ['US'] }),
-        shipping: this.fb.group({ vessel: [''], portLoading: [''], portDischarge: [''] }),
+        shipping: this.fb.group({ vessel: [''], portLoading: [''] }),
+        consignee: this.fb.group({ name: [''], country: ['AU'] }),
         customs: this.fb.group({ agent: [''] }),
         inspection: this.fb.group({ location: [''] }),
         shipHold: this.fb.group({ inspector: [''] }),
-        transit: this.fb.group({ details: [''] }),
+        transit: this.fb.group({ location: [''] }),
         supportDocs: this.fb.group({ reference: [''] }),
         miscellaneous: this.fb.group({ comments: [''] })
       }),
-      // Child Array: Collection of Line Items
       lineItems: this.fb.array([])
     });
   }
 
-  // Helper to access the FormArray
   get lineItemsArray(): FormArray {
     return this.rexForm.get('lineItems') as FormArray;
   }
 
   addLineItem() {
     const itemGroup = this.fb.group({
-      // 10 Line Item Sub-sections
-      productDetails: this.fb.group({ productName: ['', Validators.required], cutType: [''] }),
+      productDetails: this.fb.group({ productName: ['', Validators.required] }),
       packagingMetrics: this.fb.group({ qty: [0], unit: ['Cartons'] }),
       usageDetails: this.fb.group({ intendedUse: ['Human Consumption'] }),
       deptRequirements: this.fb.group({ certCodes: [''] }),
       establishmentDetails: this.fb.group({ estNumber: [''] }),
       treatmentDetails: this.fb.group({ treatmentType: ['Chilled'] }),
-      containerDetails: this.fb.group({ containerNo: [''], sealNo: [''] }),
+      containerDetails: this.fb.group({ containerNo: [''] }),
       supportingDocs: this.fb.group({ docId: [''] }),
       certificateDetails: this.fb.group({ certType: [''] }),
       additionalDetails: this.fb.group({ remarks: [''] })
     });
+    
     this.lineItemsArray.push(itemGroup);
+    this.activeLineItemIndex = this.lineItemsArray.length - 1;
   }
 
-  removeLineItem(index: number, event: Event) {
-    event.stopPropagation(); // Prevents accordion from toggling
+  removeLineItem(index: number, event?: Event) {
+    if (event) event.stopPropagation();
     if (this.lineItemsArray.length > 1) {
       this.lineItemsArray.removeAt(index);
+      this.activeLineItemIndex = Math.max(0, index - 1);
     } else {
-      this.snackBar.open('A REX must have at least one line item.', 'OK', { duration: 2000 });
+      this.snackBar.open('At least one line item is required.', 'OK', { duration: 2000 });
     }
   }
 
-  loadRexData(id: string) {
-    console.log(`Fetching REX ${id} from SQL Server...`);
-    // Here you would call your RexService.getById(id)
+  getSectionIcon(section: string): string {
+    const icons: Record<string, string> = {
+      'Status': 'info', 'Exporter': 'business', 'Shipping': 'local_shipping',
+      'Consignee': 'person', 'Customs': 'gavel', 'Inspection': 'verified',
+      "Ship Hold's Inspection": 'anchor', 'Transit Location': 'place',
+      'Support Documents': 'description', 'Miscellaneous Details': 'more_horiz',
+      'Line Items': 'inventory_2'
+    };
+    return icons[section] || 'folder';
   }
 
   onSave() {
-    if (this.rexForm.valid) {
-      console.log('Saving REX Data:', this.rexForm.value);
-      this.snackBar.open('Progress Saved Successfully', 'Success');
-    } else {
-      this.snackBar.open('Please fix errors before saving', 'Error');
-    }
+    this.snackBar.open('REX Saved Successfully', 'Success', { duration: 2000 });
   }
 
-  goBack() {
-    this.router.navigate(['/rex']);
-  }
+  goBack() { this.router.navigate(['/rex-management']); }
 }
