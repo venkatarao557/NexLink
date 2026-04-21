@@ -1,0 +1,48 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Exporter Information</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="exporterForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Exporter</mat-label>
+          <mat-select formControlName="exporterId">
+            <mat-option *ngFor="let exp of exporters" [value]="exp.id">
+              {{ exp.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Exporter Ref</mat-label>
+          <input matInput formControlName="exporterRef">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Exp Declaration</mat-label>
+          <textarea matInput formControlName="expDeclaration" rows="3" placeholder="Enter declaration details..."></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Proposed EDI User</mat-label>
+          <mat-select formControlName="ediUser">
+            <mat-option value="USER_ADMIN">Admin User</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Product Group</mat-label>
+          <mat-select formControlName="productGroup">
+            <mat-option value="MEAT">Meat</mat-option>
+            <mat-option value="DAIRY">Dairy</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

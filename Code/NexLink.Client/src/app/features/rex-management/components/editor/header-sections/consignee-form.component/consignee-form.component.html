@@ -1,0 +1,52 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Consignee Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="consigneeForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-3">
+          <mat-label>Consignee Name</mat-label>
+          <input matInput formControlName="consigneeName">
+        </mat-form-field>
+        
+        <button mat-stroked-button type="button" class="action-button" (click)="onNotifyParty()">
+          Notify Party
+        </button>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Representative Name</mat-label>
+          <input matInput formControlName="repName">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Address Line 1</mat-label>
+          <input matInput formControlName="address1">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Address Line 2</mat-label>
+          <input matInput formControlName="address2">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>City/Suburb</mat-label>
+          <input matInput formControlName="city">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Country Code</mat-label>
+          <input matInput formControlName="countryCode" placeholder="e.g. JP">
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

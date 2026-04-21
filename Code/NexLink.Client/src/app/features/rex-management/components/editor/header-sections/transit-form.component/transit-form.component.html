@@ -1,0 +1,39 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Transit Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="transitForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Type (R/D)</mat-label>
+          <input matInput formControlName="transitType" maxlength="1">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-3">
+          <mat-label>Transit Person Name</mat-label>
+          <input matInput formControlName="transitPersonName">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Transit Address</mat-label>
+          <textarea matInput formControlName="transitAddress" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Transit Port</mat-label>
+          <input matInput formControlName="transitPort">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Approval Nbr</mat-label>
+          <input matInput formControlName="approvalNbr">
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

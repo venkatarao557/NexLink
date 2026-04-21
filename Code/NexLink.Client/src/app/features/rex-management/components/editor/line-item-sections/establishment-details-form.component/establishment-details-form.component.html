@@ -1,0 +1,48 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Establishment Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="establishmentForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Source Estab Nbr</mat-label>
+          <input matInput formControlName="sourceEstabNbr">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Slaughter Estab Nbr</mat-label>
+          <input matInput formControlName="slaughterEstabNbr">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Preparation Estab Nbr</mat-label>
+          <input matInput formControlName="preparationEstabNbr">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Storage Estab Nbr</mat-label>
+          <input matInput formControlName="storageEstabNbr">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Start Processing Date</mat-label>
+          <input matInput [matDatepicker]="startPicker" formControlName="startProcessingDate">
+          <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>End Processing Date</mat-label>
+          <input matInput [matDatepicker]="endPicker" formControlName="endProcessingDate">
+          <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

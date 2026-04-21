@@ -1,0 +1,44 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Status Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="statusForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>RFP Status</mat-label>
+          <input matInput formControlName="rfpStatus" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>RFP Nbr</mat-label>
+          <input matInput formControlName="rfpNbr" readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Export Permit Nbr</mat-label>
+          <input matInput formControlName="exportPermitNbr">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Status Time Stamp</mat-label>
+          <input matInput formControlName="statusTimeStamp" readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>No. of Line Items</mat-label>
+          <input matInput type="number" formControlName="lineItemCount" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Transfer Status</mat-label>
+          <input matInput formControlName="transferStatus" readonly>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

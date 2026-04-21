@@ -1,0 +1,24 @@
+.header-orchestrator {
+  background-color: var(--mat-sys-surface);
+  border-radius: 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  margin-bottom: 2rem;
+}
+
+.step-content {
+  padding: 16px 0;
+}
+
+.component-placeholder {
+  padding: 24px;
+  background: var(--mat-sys-surface-container-low);
+  border: 1px dashed var(--mat-sys-outline);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.stepper-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}

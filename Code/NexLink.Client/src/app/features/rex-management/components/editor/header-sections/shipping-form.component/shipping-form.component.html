@@ -1,0 +1,67 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Shipping Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="shippingForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Destination Country</mat-label>
+          <input matInput formControlName="destCountry" placeholder="e.g. JAPAN">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Destination City</mat-label>
+          <input matInput formControlName="destCity">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Transport Mode</mat-label>
+          <mat-select formControlName="transportMode">
+            <mat-option value="SEA">Sea</mat-option>
+            <mat-option value="AIR">Air</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Vessel / Aircraft Name</mat-label>
+          <input matInput formControlName="vesselName">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Voyage/Flight Nbr</mat-label>
+          <input matInput formControlName="voyageFlightNbr">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Departure Date</mat-label>
+          <input matInput [matDatepicker]="departurePicker" formControlName="departureDate">
+          <mat-datepicker-toggle matIconSuffix [for]="departurePicker"></mat-datepicker-toggle>
+          <mat-datepicker #departurePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Loading Port</mat-label>
+          <input matInput formControlName="loadingPort">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Discharge Port</mat-label>
+          <input matInput formControlName="dischargePort">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-checkbox formControlName="shipStoresInd" color="primary">
+          Ship Stores Indicator
+        </mat-checkbox>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

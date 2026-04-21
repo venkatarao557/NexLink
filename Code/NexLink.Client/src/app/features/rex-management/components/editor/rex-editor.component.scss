@@ -1,98 +1,32 @@
-$primary-blue: #1a237e;
-$border: #e2e8f0;
-$sidebar-bg: #ffffff;
-$content-bg: #f8fafc;
-
-.rex-editor-wrapper {
+.editor-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: $content-bg;
-
-  .editor-header {
-    height: 64px;
-    background: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px;
-    border-bottom: 1px solid $border;
-    z-index: 10;
-    
-    .title-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      h1 { margin: 0; font-size: 18px; color: $primary-blue; font-weight: 600; }
-    }
-  }
-
-  .editor-body {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-
-    .rex-sidebar {
-      width: 260px;
-      background: $sidebar-bg;
-      border-right: 1px solid $border;
-      padding-top: 1rem;
-      overflow-y: auto;
-
-      .sidebar-label {
-        padding: 0 1.25rem 0.5rem;
-        font-size: 10px;
-        font-weight: 700;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .active-link {
-        background: #f1f5f9;
-        color: $primary-blue;
-        border-right: 4px solid $primary-blue;
-        font-weight: 600;
-      }
-    }
-
-    .editor-content {
-      flex: 1;
-      padding: 24px;
-      overflow-y: auto;
-
-      .content-card {
-        background: white;
-        border-radius: 8px;
-        padding: 32px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        min-height: calc(100% - 64px);
-      }
-    }
-  }
+  background-color: var(--mat-sys-surface-container-lowest);
 }
 
-.items-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  padding: 12px;
-  background: #f1f5f9;
-  border-radius: 6px;
+.editor-toolbar {
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  z-index: 10;
   
-  .item-selector { width: 320px; margin-bottom: -1.25em; }
+  .title-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
 }
 
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  padding-top: 1rem;
+.editor-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
 }
 
-.divider {
-  border: 0;
-  border-top: 1px solid #f1f5f9;
-  margin: 1rem 0 2rem;
+.spacer { flex: 1 1 auto; }
+
+.action-group {
+  display: flex;
+  gap: 12px;
 }

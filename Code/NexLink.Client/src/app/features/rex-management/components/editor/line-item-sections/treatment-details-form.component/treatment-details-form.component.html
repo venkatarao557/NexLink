@@ -1,0 +1,52 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Treatment Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="treatmentForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Treatment Type</mat-label>
+          <mat-select formControlName="treatmentType">
+            <mat-option value="CHEMICAL">Chemical</mat-option>
+            <mat-option value="HEAT">Heat</mat-option>
+            <mat-option value="COLD">Cold</mat-option>
+            <mat-option value="FUMIGATION">Fumigation</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Chemical/Treatment Name</mat-label>
+          <input matInput formControlName="treatmentName" placeholder="e.g. Methyl Bromide">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Concentration</mat-label>
+          <input matInput formControlName="concentration">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Duration (Hours)</mat-label>
+          <input matInput type="number" formControlName="duration">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Temperature</mat-label>
+          <input matInput formControlName="temperature">
+          <span matSuffix>°C</span>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Treatment Date</mat-label>
+          <input matInput [matDatepicker]="treatmentPicker" formControlName="treatmentDate">
+          <mat-datepicker-toggle matIconSuffix [for]="treatmentPicker"></mat-datepicker-toggle>
+          <mat-datepicker #treatmentPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

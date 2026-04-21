@@ -1,0 +1,43 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Certificate Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="certForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Certificate Number</mat-label>
+          <input matInput formControlName="certificateNumber" placeholder="e.g. PER2026-12345">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Template ID</mat-label>
+          <input matInput formControlName="templateId">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Issue Date</mat-label>
+          <input matInput [matDatepicker]="issuePicker" formControlName="issueDate">
+          <mat-datepicker-toggle matIconSuffix [for]="issuePicker"></mat-datepicker-toggle>
+          <mat-datepicker #issuePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Expiry Date</mat-label>
+          <input matInput [matDatepicker]="expiryPicker" formControlName="expiryDate">
+          <mat-datepicker-toggle matIconSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+          <mat-datepicker #expiryPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Technical Statement</mat-label>
+          <textarea matInput formControlName="technicalStatement" rows="3" placeholder="Enter additional certificate statements..."></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

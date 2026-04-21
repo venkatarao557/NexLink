@@ -1,122 +1,27 @@
-<div class="rex-editor-wrapper" [formGroup]="rexForm">
-  <header class="editor-header">
-    <div class="title-group">
-      <button mat-icon-button (click)="goBack()">
-        <mat-icon>arrow_back</mat-icon>
+<div class="editor-container">
+  <mat-toolbar color="surface" class="editor-toolbar">
+    <div class="title-section">
+      <mat-icon>edit_document</mat-icon>
+      <span>REX Editor - {{ rexForm.get('header.status.rexNumber')?.value || 'New Request' }}</span>
+    </div>
+    <span class="spacer"></span>
+    <div class="action-group">
+      <button mat-button (click)="onSave()">Save Draft</button>
+      <button mat-flat-button color="primary" [disabled]="!rexForm.valid" (click)="onSubmit()">
+        <mat-icon>send</mat-icon> Submit to NEXDOC
       </button>
-      <div>
-        <h1>{{ pageTitle }}</h1>
-        <small *ngIf="rexId">Internal ID: {{ rexId }}</small>
-      </div>
     </div>
-    <div class="actions">
-      <button mat-button color="warn" (click)="rexForm.reset()">Reset</button>
-      <button mat-raised-button color="primary" (click)="onSave()">Save Draft</button>
-    </div>
-  </header>
+  </mat-toolbar>
 
-  <div class="editor-body">
-    <aside class="rex-sidebar">
-      <div class="sidebar-label">REX Configuration</div>
-      <mat-nav-list>
-        @for (section of mainSections; track section) {
-          <a mat-list-item 
-             [class.active-link]="activeMainSection === section"
-             (click)="activeMainSection = section">
-            <mat-icon matListItemIcon>{{ getSectionIcon(section) }}</mat-icon>
-            <div matListItemTitle>{{ section }}</div>
-          </a>
-        }
-      </mat-nav-list>
-    </aside>
+  <div class="editor-content">
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="General Header Details">
+        <app-header-container [headerForm]="rexForm.get('header')"></app-header-container>
+      </mat-tab>
 
-    <main class="editor-content">
-      <div class="content-card">
-        
-        @if (activeMainSection === 'Line Items') {
-          <div class="items-container">
-            <div class="items-toolbar">
-              <mat-form-field appearance="outline" class="item-selector">
-                <mat-label>Select Product to Edit</mat-label>
-                <mat-select [(value)]="activeLineItemIndex">
-                  @for (item of lineItemsArray.controls; track item; let i = $index) {
-                    <mat-option [value]="i">
-                      #{{ i + 1 }} - {{ item.get('productDetails.productName')?.value || 'New Product' }}
-                    </mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
-
-              <div class="toolbar-actions">
-                <button mat-stroked-button color="warn" 
-                        (click)="removeLineItem(activeLineItemIndex, $event)"
-                        [disabled]="lineItemsArray.length <= 1">
-                  <mat-icon>delete</mat-icon> Remove
-                </button>
-                <button mat-flat-button color="accent" (click)="addLineItem()">
-                  <mat-icon>add</mat-icon> Add Product Line
-                </button>
-              </div>
-            </div>
-
-            <div formArrayName="lineItems">
-              <div [formGroupName]="activeLineItemIndex">
-                <mat-tab-group class="line-item-tabs" color="accent">
-                  <mat-tab label="Product" formGroupName="productDetails">
-                    <div class="form-grid tab-padding">
-                      <mat-form-field appearance="outline">
-                        <mat-label>Product Name</mat-label>
-                        <input matInput formControlName="productName">
-                      </mat-form-field>
-                      <mat-form-field appearance="outline">
-                        <mat-label>Cut Type</mat-label>
-                        <input matInput formControlName="cutType">
-                      </mat-form-field>
-                    </div>
-                  </mat-tab>
-
-                  <mat-tab label="Packaging" formGroupName="packagingMetrics">
-                    <div class="form-grid tab-padding">
-                      <mat-form-field appearance="outline"><mat-label>Quantity</mat-label><input matInput type="number" formControlName="qty"></mat-form-field>
-                      <mat-form-field appearance="outline"><mat-label>Unit</mat-label><input matInput formControlName="unit"></mat-form-field>
-                    </div>
-                  </mat-tab>
-
-                  <mat-tab label="Usage" formGroupName="usageDetails"><div class="tab-padding">Usage details for the product.</div></mat-tab>
-                  <mat-tab label="Dept Req" formGroupName="deptRequirements"><div class="tab-padding">DAFF/Export specific codes.</div></mat-tab>
-                  <mat-tab label="Establishment" formGroupName="establishmentDetails"><div class="tab-padding">Source establishment info.</div></mat-tab>
-                  <mat-tab label="Treatment" formGroupName="treatmentDetails"><div class="tab-padding">Chilled/Frozen/Processed.</div></mat-tab>
-                  <mat-tab label="Container" formGroupName="containerDetails"><div class="tab-padding">Seal & Container numbers.</div></mat-tab>
-                  <mat-tab label="Docs" formGroupName="supportingDocs"><div class="tab-padding">Item-level documentation.</div></mat-tab>
-                  <mat-tab label="Cert" formGroupName="certificateDetails"><div class="tab-padding">Specific health statements.</div></mat-tab>
-                  <mat-tab label="Additional" formGroupName="additionalDetails"><div class="tab-padding">Other remarks.</div></mat-tab>
-                </mat-tab-group>
-              </div>
-            </div>
-          </div>
-        }
-
-        @if (activeMainSection !== 'Line Items') {
-          <div formGroupName="header">
-            <h2>{{ activeMainSection }}</h2>
-            <hr class="divider">
-            
-            @if (activeMainSection === 'Exporter') {
-              <div formGroupName="exporter" class="form-grid">
-                <mat-form-field appearance="outline"><mat-label>Exporter Name</mat-label><input matInput formControlName="name"></mat-form-field>
-                <mat-form-field appearance="outline"><mat-label>Est Number</mat-label><input matInput formControlName="estNo"></mat-form-field>
-              </div>
-            }
-
-            @if (activeMainSection !== 'Exporter') {
-              <div class="placeholder-content">
-                Manage <strong>{{ activeMainSection }}</strong> data entry here.
-              </div>
-            }
-          </div>
-        }
-
-      </div>
-    </main>
+      <mat-tab label="Product Line Items">
+        <app-line-item-container [lineItems]="lineItemsArray"></app-line-item-container>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>

@@ -1,0 +1,49 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Usage Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="usageForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Product Use</mat-label>
+          <mat-select formControlName="productUse">
+            <mat-option value="HUMAN_CONSUMPTION">Human Consumption</mat-option>
+            <mat-option value="ANIMAL_CONSUMPTION">Animal Consumption</mat-option>
+            <mat-option value="TECHNICAL_USE">Technical/Industrial Use</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Intended Use</mat-label>
+          <mat-select formControlName="intendedUse">
+            <mat-option value="RETAIL_SALE">Retail Sale</mat-option>
+            <mat-option value="FURTHER_PROCESSING">Further Processing</mat-option>
+            <mat-option value="WHOLESALE">Wholesale</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>State of Origin</mat-label>
+          <mat-select formControlName="stateOfOrigin">
+            <mat-option value="ACT">ACT</mat-option>
+            <mat-option value="NSW">NSW</mat-option>
+            <mat-option value="VIC">VIC</mat-option>
+            <mat-option value="QLD">QLD</mat-option>
+            <mat-option value="SA">SA</mat-option>
+            <mat-option value="WA">WA</mat-option>
+            <mat-option value="TAS">TAS</mat-option>
+            <mat-option value="NT">NT</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>State of Destination</mat-label>
+          <input matInput formControlName="stateOfDestination" placeholder="Enter Destination State">
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

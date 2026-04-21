@@ -1,0 +1,44 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Packaging & Metrics</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="metricsForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Number of Packages</mat-label>
+          <input matInput type="number" formControlName="numPackages">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Package Type</mat-label>
+          <mat-select formControlName="packageType">
+            <mat-option value="CT">Carton</mat-option>
+            <mat-option value="PL">Pallet</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Net Weight</mat-label>
+          <input matInput type="number" formControlName="netWeight">
+          <span matSuffix>KG</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Gross Weight</mat-label>
+          <input matInput type="number" formControlName="grossWeight">
+          <span matSuffix>KG</span>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Shipping Marks</mat-label>
+          <textarea matInput formControlName="shippingMarks" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

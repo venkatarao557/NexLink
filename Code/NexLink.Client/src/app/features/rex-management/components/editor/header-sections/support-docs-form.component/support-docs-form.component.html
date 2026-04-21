@@ -1,0 +1,28 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Import Documents</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="importDocsForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Import Document Nbr</mat-label>
+          <input matInput formControlName="importDocNbr" placeholder="Enter document number">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Document Date</mat-label>
+          <input matInput [matDatepicker]="docPicker" formControlName="importDocDate">
+          <mat-datepicker-toggle matIconSuffix [for]="docPicker"></mat-datepicker-toggle>
+          <mat-datepicker #docPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-checkbox formControlName="recommendationLetterInd" color="primary">
+          Recommendation Letter Required
+        </mat-checkbox>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

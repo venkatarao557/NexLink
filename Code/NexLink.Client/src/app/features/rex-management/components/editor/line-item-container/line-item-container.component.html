@@ -1,0 +1,51 @@
+<section class="line-items-container">
+  <div class="section-header">
+    <div class="title-group">
+      <mat-icon color="primary">inventory_2</mat-icon>
+      <h2>Product Line Items</h2>
+      <span class="count-badge">{{ lineItems.length }}</span>
+    </div>
+    <button mat-flat-button color="primary" (click)="addLineItem()">
+      <mat-icon>add</mat-icon> Add New Product
+    </button>
+  </div>
+
+  <mat-accordion multi class="line-item-accordion">
+    <mat-expansion-panel *ngFor="let item of lineItems.controls; let i = index" [expanded]="i === 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>Line #{{ i + 1 }}</strong>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ item.get('productDetails.productType')?.value || 'New Product Line' }}
+          <span class="weight-preview" *ngIf="item.get('productDetails.netWeight')?.value">
+            ({{ item.get('productDetails.netWeight')?.value }} {{ item.get('productDetails.unit')?.value }})
+          </span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="line-item-layout">
+        <app-product-details [productForm]="getGroup(item, 'productDetails')"></app-product-details>
+
+        <div class="horizontal-sub-grid">
+          <app-treatment-details [treatmentForm]="getGroup(item, 'treatmentDetails')"></app-treatment-details>
+          
+          <app-container-details [containerForm]="getGroup(item, 'containerDetails')"></app-container-details>
+        </div>
+
+        <app-additional-details [additionalDetailsArray]="getArray(item, 'additionalCerts')"></app-additional-details>
+      </div>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="removeLineItem(i)">
+          <mat-icon>delete_outline</mat-icon> Remove Line Item
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="empty-state" *ngIf="lineItems.length === 0">
+    <mat-icon>post_add</mat-icon>
+    <p>No product lines added yet. Click "Add New Product" to start.</p>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Additional Health Certificate Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container mat-elevation-z0">
+      <table mat-table [dataSource]="dataSource" class="full-width-table">
+        
+        <ng-container matColumnDef="hcNbr">
+          <th mat-header-cell *matHeaderCellDef> HC Nbr </th>
+          <td mat-cell *matCellDef="let element; let i = index" [formGroup]="getFormGroup(i)">
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <input matInput formControlName="hcNbr">
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hcTemplate">
+          <th mat-header-cell *matHeaderCellDef> H/C Template </th>
+          <td mat-cell *matCellDef="let element; let i = index" [formGroup]="getFormGroup(i)">
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <input matInput formControlName="hcTemplate">
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hcEndorsementNbr">
+          <th mat-header-cell *matHeaderCellDef> H/C Endorsement Nbr </th>
+          <td mat-cell *matCellDef="let element; let i = index" [formGroup]="getFormGroup(i)">
+            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+              <input matInput formControlName="hcEndorsementNbr">
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="primaryCert">
+          <th mat-header-cell *matHeaderCellDef> Primary Cert </th>
+          <td mat-cell *matCellDef="let element; let i = index" [formGroup]="getFormGroup(i)" class="text-center">
+            <mat-checkbox formControlName="primaryCert" color="primary"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <div class="actions-row">
+      <button mat-button color="primary" type="button" (click)="addRow()">
+        <mat-icon>add</mat-icon> Add Certificate
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

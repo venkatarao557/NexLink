@@ -1,0 +1,36 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Departmental Requirements</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="deptReqForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Health Cert Required</mat-label>
+          <mat-select formControlName="healthCertReq">
+            <mat-option value="YES">Yes</mat-option>
+            <mat-option value="NO">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Import Permit Nbr</mat-label>
+          <input matInput formControlName="importPermitNbr">
+        </mat-form-field>
+      </div>
+
+      <div class="row checkbox-row">
+        <mat-checkbox formControlName="organicInd" color="primary">Organic Indicator</mat-checkbox>
+        <mat-checkbox formControlName="halalInd" color="primary">Halal Indicator</mat-checkbox>
+        <mat-checkbox formControlName="gmInd" color="primary">GM Indicator</mat-checkbox>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Department Declaration</mat-label>
+          <textarea matInput formControlName="deptDeclaration" rows="3" placeholder="Enter specific regulatory declarations..."></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

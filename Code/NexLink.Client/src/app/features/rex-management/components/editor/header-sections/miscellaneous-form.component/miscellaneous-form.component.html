@@ -1,0 +1,34 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Miscellaneous Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="miscForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>H/C Print Ind</mat-label>
+          <mat-select formControlName="hcPrintInd">
+            <mat-option value="AUTO">Automatic</mat-option>
+            <mat-option value="MANUAL">Manual</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="flex-1 checkbox-group">
+          <mat-checkbox formControlName="quotaInd">Quota Ind</mat-checkbox>
+        </div>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Quota Year</mat-label>
+          <input matInput formControlName="quotaYear" maxlength="4">
+        </mat-form-field>
+      </div>
+
+      <div class="row separator-row">
+        <span class="label-hint">Separate Certificates By:</span>
+        <mat-checkbox formControlName="sepByMarks">Marks</mat-checkbox>
+        <mat-checkbox formControlName="sepByPacker">Packer</mat-checkbox>
+        <mat-checkbox formControlName="sepByContainer">Container</mat-checkbox>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,30 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Ship Hold Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="shipHoldForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Compartments</mat-label>
+          <input matInput formControlName="compartments" placeholder="Enter compartment identifiers">
+          <mat-hint>Separate multiple compartments with commas</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Inspection Date</mat-label>
+          <input matInput [matDatepicker]="holdPicker" formControlName="inspectionDate">
+          <mat-datepicker-toggle matIconSuffix [for]="holdPicker"></mat-datepicker-toggle>
+          <mat-datepicker #holdPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Inspection Port</mat-label>
+          <input matInput formControlName="inspectionPort" placeholder="e.g. PORT BRISBANE">
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

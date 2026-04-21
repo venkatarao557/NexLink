@@ -1,0 +1,22 @@
+.rex-card {
+  margin-bottom: 1rem;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface);
+}
+
+.rex-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 12px;
+
+  .row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .flex-1 { flex: 1; }
+  .flex-2 { flex: 2; }
+}

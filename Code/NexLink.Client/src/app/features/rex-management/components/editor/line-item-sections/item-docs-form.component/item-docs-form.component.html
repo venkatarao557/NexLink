@@ -1,0 +1,44 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Line Item Documents</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="docsForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Document Type</mat-label>
+          <mat-select formControlName="docTypeCode">
+            <mat-option value="IP">Import Permit</mat-option>
+            <mat-option value="HC">Health Certificate</mat-option>
+            <mat-option value="OM">Other Mandatory</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Document Reference/Nbr</mat-label>
+          <input matInput formControlName="docReference">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Issuing Authority</mat-label>
+          <input matInput formControlName="issuingAuthority" placeholder="e.g. DAFF">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Issue Date</mat-label>
+          <input matInput [matDatepicker]="docPicker" formControlName="issueDate">
+          <mat-datepicker-toggle matIconSuffix [for]="docPicker"></mat-datepicker-toggle>
+          <mat-datepicker #docPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-checkbox formControlName="isElectronic" color="primary">
+          Available Electronically (e-Cert)
+        </mat-checkbox>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

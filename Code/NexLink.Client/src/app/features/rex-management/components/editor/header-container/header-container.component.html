@@ -1,0 +1,46 @@
+<div class="header-orchestrator">
+  <mat-stepper orientation="vertical" [linear]="false" #stepper>
+    
+    <mat-step [stepControl]="getGroup('status')">
+      <ng-template matStepLabel>Status & Identification</ng-template>
+      <div class="step-content">
+        <div class="component-placeholder">
+          <p>Status Component Section</p>
+          </div>
+        
+        <div class="stepper-actions">
+          <button mat-flat-button color="primary" matStepperNext>Continue to Parties</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="getGroup('parties')">
+      <ng-template matStepLabel>Parties (Exporter/Consignee)</ng-template>
+      <div class="step-content">
+        <div class="component-placeholder">
+          <p>Parties & Consignee Section</p>
+          </div>
+
+        <div class="stepper-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Shipping Details</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="getGroup('shipping')">
+      <ng-template matStepLabel>Shipping & Transport</ng-template>
+      <div class="step-content">
+        <div class="component-placeholder">
+          <p>Shipping & Voyage Section</p>
+          </div>
+
+        <div class="stepper-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Customs & Financials</button>
+        </div>
+      </div>
+    </mat-step>
+
+  </mat-stepper>
+</div>

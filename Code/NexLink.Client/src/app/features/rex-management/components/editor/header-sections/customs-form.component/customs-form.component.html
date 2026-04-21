@@ -1,0 +1,34 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Customs Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="customsForm" class="rex-form-grid">
+      <div class="row">
+        <mat-checkbox formControlName="customsAgentInd" color="primary">
+          Customs Agent Indicator
+        </mat-checkbox>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Total FOB Amount</mat-label>
+          <input matInput type="number" formControlName="totalFobAmount" placeholder="0.00">
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Invoice Currency</mat-label>
+          <input matInput formControlName="invoiceCurrency" placeholder="e.g. AUD">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Embargo Message</mat-label>
+          <textarea matInput formControlName="embargoMsg" rows="3" placeholder="Enter embargo details if applicable..."></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

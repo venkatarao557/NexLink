@@ -1,0 +1,52 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Harvest Area Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="harvestForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-2">
+          <mat-label>Harvest Area Name</mat-label>
+          <input matInput formControlName="harvestAreaName" placeholder="e.g. Spencer Gulf">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Harvest Area ID</mat-label>
+          <input matInput formControlName="harvestAreaId">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Water Type</mat-label>
+          <mat-select formControlName="waterType">
+            <mat-option value="MARINE">Marine</mat-option>
+            <mat-option value="ESTUARINE">Estuarine</mat-option>
+            <mat-option value="FRESHWATER">Freshwater</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Lease Number</mat-label>
+          <input matInput formControlName="leaseNumber">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Harvest Start Date</mat-label>
+          <input matInput [matDatepicker]="harvestStartPicker" formControlName="harvestStartDate">
+          <mat-datepicker-toggle matIconSuffix [for]="harvestStartPicker"></mat-datepicker-toggle>
+          <mat-datepicker #harvestStartPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Harvest End Date</mat-label>
+          <input matInput [matDatepicker]="harvestEndPicker" formControlName="harvestEndDate">
+          <mat-datepicker-toggle matIconSuffix [for]="harvestEndPicker"></mat-datepicker-toggle>
+          <mat-datepicker #harvestEndPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

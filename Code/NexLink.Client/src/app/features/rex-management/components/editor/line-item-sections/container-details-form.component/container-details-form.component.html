@@ -1,0 +1,51 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Container & Seal Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="containerForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Container Number</mat-label>
+          <input matInput formControlName="containerNumber" placeholder="e.g. MSKU1234567">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Seal Number</mat-label>
+          <input matInput formControlName="sealNumber">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Container Size</mat-label>
+          <mat-select formControlName="containerSize">
+            <mat-option value="20">20 Foot</mat-option>
+            <mat-option value="40">40 Foot</mat-option>
+            <mat-option value="45">45 Foot</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Container Type</mat-label>
+          <mat-select formControlName="containerType">
+            <mat-option value="REEFER">Reefer</mat-option>
+            <mat-option value="DRY">Dry / General Purpose</mat-option>
+            <mat-option value="OPEN_TOP">Open Top</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Seal Source</mat-label>
+          <mat-select formControlName="sealSource">
+            <mat-option value="DEPT">Department (DAFF)</mat-option>
+            <mat-option value="ESTAB">Establishment</mat-option>
+            <mat-option value="SHIPPING">Shipping Line</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

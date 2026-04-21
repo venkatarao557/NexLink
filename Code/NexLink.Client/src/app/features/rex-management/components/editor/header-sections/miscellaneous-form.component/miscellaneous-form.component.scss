@@ -1,0 +1,46 @@
+.rex-card {
+  margin-bottom: 1rem;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface);
+}
+
+.rex-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 12px;
+
+  .row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .flex-1 { flex: 1; }
+  .flex-2 { flex: 2; }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    height: 56px;
+  }
+
+  .separator-row {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: var(--mat-sys-surface-container-low);
+    border-radius: 8px;
+    
+    .label-hint {
+      font-size: 0.85rem;
+      color: var(--mat-sys-on-surface-variant);
+      margin-right: 8px;
+      font-weight: 500;
+    }
+    
+    mat-checkbox {
+      margin-right: 12px;
+    }
+  }
+}

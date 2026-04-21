@@ -1,0 +1,50 @@
+<mat-card class="rex-card">
+  <mat-card-header>
+    <mat-card-title>Product Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="productForm" class="rex-form-grid">
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Commodity Code</mat-label>
+          <input matInput formControlName="commodityCode">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Product Code</mat-label>
+          <input matInput formControlName="productCode">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Cut Code</mat-label>
+          <input matInput formControlName="cutCode">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Product Description</mat-label>
+          <textarea matInput formControlName="productDescription" rows="2"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Refrigeration Type</mat-label>
+          <mat-select formControlName="refrigerationType">
+            <mat-option value="CHILLED">Chilled</mat-option>
+            <mat-option value="FROZEN">Frozen</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-1">
+          <mat-label>Packaging Type</mat-label>
+          <mat-select formControlName="packagingType">
+            <mat-option value="CARTON">Carton</mat-option>
+            <mat-option value="CARCASS">Carcass</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
