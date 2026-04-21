@@ -7,19 +7,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  selector: 'app-packaging-metrics',
+  selector: 'app-product-details',
   standalone: true,
   imports: [
-    CommonModule, 
-    ReactiveFormsModule, 
-    MatCardModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatSelectModule
   ],
-  templateUrl: './packaging-metrics.component.html',
-  styleUrls: ['./packaging-metrics.component.scss']
+  templateUrl: './product-details-form.component.html',
+  styleUrls: ['./product-details-form.component.scss']
 })
-export class PackagingMetricsComponent {
-  @Input() metricsForm!: FormGroup;
+export class ProductDetailsComponent {
+  @Input() productForm!: FormGroup;
 }

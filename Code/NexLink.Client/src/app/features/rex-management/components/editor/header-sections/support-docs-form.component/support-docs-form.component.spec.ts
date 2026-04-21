@@ -35,8 +35,8 @@ describe('ImportDocsFormComponent', () => {
   });
 
   it('should allow toggling the recommendation letter indicator', () => {
-    const control = component.importDocsForm.get('recommendationLetterInd');
+    const control = component.supportDocsForm.get('recommendationLetterInd');
     control?.setValue(true);
-    expect(control?.value).toBeTrue();
+    expect(control?.value).toBe(true);
   });
 });

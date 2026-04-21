@@ -5,9 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-product-details',
+  selector: 'app-dept-requirements',
   standalone: true,
   imports: [
     CommonModule,
@@ -15,11 +16,12 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  templateUrl: './dept-requirements-form.component.html',
+  styleUrls: ['./dept-requirements-form.component.scss']
 })
-export class ProductDetailsComponent {
-  @Input() productForm!: FormGroup;
+export class DeptRequirementsComponent {
+  @Input() deptReqForm!: FormGroup;
 }

@@ -4,12 +4,11 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-treatment-details',
+  selector: 'app-establishment-details',
   standalone: true,
   imports: [
     CommonModule,
@@ -17,13 +16,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  templateUrl: './treatment-details.component.html',
-  styleUrls: ['./treatment-details.component.scss']
+  templateUrl: './establishment-details-form.component.html',
+  styleUrls: ['./establishment-details-form.component.scss']
 })
-export class TreatmentDetailsComponent {
-  @Input() treatmentForm!: FormGroup;
+export class EstablishmentDetailsComponent {
+  @Input() establishmentForm!: FormGroup;
 }

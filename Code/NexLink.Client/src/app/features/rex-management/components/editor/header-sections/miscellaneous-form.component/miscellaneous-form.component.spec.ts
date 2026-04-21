@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MiscFormComponent } from './misc-form.component';
+import { MiscellaneousFormComponent } from './miscellaneous-form.component';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MiscFormComponent', () => {
-  let component: MiscFormComponent;
-  let fixture: ComponentFixture<MiscFormComponent>;
+  let component: MiscellaneousFormComponent;
+  let fixture: ComponentFixture<MiscellaneousFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MiscFormComponent, NoopAnimationsModule, ReactiveFormsModule]
+      imports: [MiscellaneousFormComponent, ReactiveFormsModule]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MiscFormComponent);
+    fixture = TestBed.createComponent(MiscellaneousFormComponent);
     component = fixture.componentInstance;
 
     component.miscForm = new FormGroup({

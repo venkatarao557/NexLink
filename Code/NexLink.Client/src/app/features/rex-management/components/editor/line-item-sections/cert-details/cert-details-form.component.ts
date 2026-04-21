@@ -4,12 +4,11 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-harvest-area-details',
+  selector: 'app-cert-details',
   standalone: true,
   imports: [
     CommonModule,
@@ -17,13 +16,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  templateUrl: './harvest-area-details.component.html',
-  styleUrls: ['./harvest-area-details.component.scss']
+  templateUrl: './cert-details-form.component.html',
+  styleUrls: ['./cert-details-form.component.scss']
 })
-export class HarvestAreaDetailsComponent {
-  @Input() harvestForm!: FormGroup;
+export class CertDetailsComponent {
+  @Input() certForm!: FormGroup;
 }

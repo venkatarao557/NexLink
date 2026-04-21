@@ -5,9 +5,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-container-details',
+  selector: 'app-treatment-details',
   standalone: true,
   imports: [
     CommonModule,
@@ -15,11 +17,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  templateUrl: './container-details.component.html',
-  styleUrls: ['./container-details.component.scss']
+  templateUrl: './treatment-details-form.component.html',
+  styleUrls: ['./treatment-details-form.component.scss']
 })
-export class ContainerDetailsComponent {
-  @Input() containerForm!: FormGroup;
+export class TreatmentDetailsComponent {
+  @Input() treatmentForm!: FormGroup;
 }

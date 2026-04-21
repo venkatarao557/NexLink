@@ -4,11 +4,13 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-establishment-details',
+  selector: 'app-line-item-documents',
   standalone: true,
   imports: [
     CommonModule,
@@ -16,12 +18,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  templateUrl: './establishment-details.component.html',
-  styleUrls: ['./establishment-details.component.scss']
+  templateUrl: './item-docs-form.component.html',
+  styleUrls: ['./item-docs-form.component.scss']
 })
-export class EstablishmentDetailsComponent {
-  @Input() establishmentForm!: FormGroup;
+export class LineItemDocumentsComponent {
+  @Input() docsForm!: FormGroup;
 }

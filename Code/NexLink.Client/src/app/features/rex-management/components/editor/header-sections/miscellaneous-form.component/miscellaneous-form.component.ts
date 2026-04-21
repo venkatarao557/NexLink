@@ -19,9 +19,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSelectModule,
     MatCheckboxModule
   ],
-  templateUrl: './misc-form.component.html',
-  styleUrls: ['./misc-form.component.scss']
+  templateUrl: './miscellaneous-form.component.html',
+  styleUrls: ['./miscellaneous-form.component.scss']
 })
-export class MiscFormComponent {
+export class MiscellaneousFormComponent {
   @Input() miscForm!: FormGroup;
 }

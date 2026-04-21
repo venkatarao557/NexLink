@@ -8,10 +8,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Import the sub-components we generated previously
-import { ProductDetailsComponent } from '../line-items/product-details/product-details.component';
-import { TreatmentDetailsComponent } from '../line-items/treatment-details/treatment-details.component';
-import { ContainerDetailsComponent } from '../line-items/container-details/container-details.component';
-import { AdditionalDetailsComponent } from '../line-items/additional-details/additional-details.component';
+import { ProductDetailsComponent } from   '../line-item-sections/product-details/product-details-form.component';
+import { TreatmentDetailsComponent } from '../line-item-sections/treatment-details/treatment-details-form.component';
+import { ContainerDetailsComponent } from '../line-item-sections/container-details/container-details-form.component';
+import { AdditionalDetailsComponent } from '../line-item-sections/additional-details/additional-details-form.component';
 
 @Component({
   selector: 'app-line-item-container',

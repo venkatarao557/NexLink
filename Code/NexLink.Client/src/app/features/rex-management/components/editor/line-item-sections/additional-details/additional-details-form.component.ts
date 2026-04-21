@@ -23,8 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule
   ],
-  templateUrl: './additional-details.component.html',
-  styleUrls: ['./additional-details.component.scss']
+  templateUrl: './additional-details-form.component.html',
+  styleUrls: ['./additional-details-form.component.scss']
 })
 export class AdditionalDetailsComponent implements OnInit {
   @Input() additionalDetailsArray!: FormArray;

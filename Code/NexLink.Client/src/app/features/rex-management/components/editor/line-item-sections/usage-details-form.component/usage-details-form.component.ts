@@ -17,8 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatSelectModule
   ],
-  templateUrl: './usage-details.component.html',
-  styleUrls: ['./usage-details.component.scss']
+  templateUrl: './usage-details-form.component.html',
+  styleUrls: ['./usage-details-form.component.scss']
 })
 export class UsageDetailsComponent {
   @Input() usageForm!: FormGroup;

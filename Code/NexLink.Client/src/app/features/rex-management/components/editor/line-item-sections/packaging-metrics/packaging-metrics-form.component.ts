@@ -5,23 +5,21 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-dept-requirements',
+  selector: 'app-packaging-metrics',
   standalone: true,
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule
+    CommonModule, 
+    ReactiveFormsModule, 
+    MatCardModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatSelectModule
   ],
-  templateUrl: './dept-requirements.component.html',
-  styleUrls: ['./dept-requirements.component.scss']
+  templateUrl: './packaging-metrics-form.component.html',
+  styleUrls: ['./packaging-metrics-form.component.scss']
 })
-export class DeptRequirementsComponent {
-  @Input() deptReqForm!: FormGroup;
+export class PackagingMetricsComponent {
+  @Input() metricsForm!: FormGroup;
 }

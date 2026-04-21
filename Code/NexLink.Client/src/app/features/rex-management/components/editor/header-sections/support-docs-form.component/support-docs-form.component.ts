@@ -21,9 +21,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  templateUrl: './import-docs-form.component.html',
-  styleUrls: ['./import-docs-form.component.scss']
+  templateUrl: './support-docs-form.component.html',
+  styleUrls: ['./support-docs-form.component.scss']
 })
-export class ImportDocsFormComponent {
-  @Input() importDocsForm!: FormGroup;
+export class SupportDocsFormComponent {
+  @Input() supportDocsForm!: FormGroup;
 }

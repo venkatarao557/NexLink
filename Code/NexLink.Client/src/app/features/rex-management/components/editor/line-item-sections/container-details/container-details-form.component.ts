@@ -5,12 +5,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-line-item-documents',
+  selector: 'app-container-details',
   standalone: true,
   imports: [
     CommonModule,
@@ -18,14 +15,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    MatSelectModule
   ],
-  templateUrl: './line-item-documents.component.html',
-  styleUrls: ['./line-item-documents.component.scss']
+  templateUrl: './container-details-form.component.html',
+  styleUrls: ['./container-details-form.component.scss']
 })
-export class LineItemDocumentsComponent {
-  @Input() docsForm!: FormGroup;
+export class ContainerDetailsComponent {
+  @Input() containerForm!: FormGroup;
 }
